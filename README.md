@@ -33,4 +33,11 @@ $sdk->resource->update(
 ); // Update a Resource
 $sdk->resource->delete(1); // Delete a Resource
 
+/**
+ *  Adding filters to your query
+ */
+$sdk->addFilters([
+    'user_id' => 1
+]);
+
 ```
