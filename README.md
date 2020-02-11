@@ -21,4 +21,7 @@ $sdk->add([
     ]
 ]);
 
+$sdk->resource->get('/'); // Fetch all Resources
+$sdk->resource->find(1); // Fetch a single Resource
+
 ```

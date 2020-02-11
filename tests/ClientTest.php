@@ -83,7 +83,7 @@ class ClientTest extends TestCase
         $this->assertInstanceOf(Client::class, $this->sdk->fake);
     }
 
-    public function testEndpointCanBeConstructed()
+    public function testCanRunAGetRequestForAllResources()
     {
         $posts = [
             'url' => 'posts'
@@ -93,6 +93,82 @@ class ClientTest extends TestCase
             'posts' => $posts
         ]);
 
-        $this->sdk->posts->get('/');
+        $response = $this->sdk->posts->list();
+
+        $this->assertTrue(is_array($response));
+    }
+
+    public function testCanRunAGetRequestForASingleResource()
+    {
+        $posts = [
+            'url' => 'posts'
+        ];
+
+        $this->sdk->add([
+            'posts' => $posts
+        ]);
+
+        $response = $this->sdk->posts->get(1);
+
+        $this->assertEquals(
+            $response->title,
+            "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
+        );
+
+        $this->assertEquals(
+            $response->id,
+            1
+        );
+    }
+
+    public function testCanCreateAResource()
+    {
+        $posts = [
+            'url' => 'posts'
+        ];
+
+        $this->sdk->add([
+            'posts' => $posts
+        ]);
+
+        $response = $this->sdk->posts->create($item = [
+            'title' => 'Test Title',
+            'body' => 'Test body',
+            'userId' => 1
+        ]);
+
+        $this->assertNotNull($response);
+    }
+
+    public function testCanUpdateAResource()
+    {
+        $posts = [
+            'url' => 'posts'
+        ];
+
+        $this->sdk->add([
+            'posts' => $posts
+        ]);
+
+        $response = $this->sdk->posts->update(1, $item = [
+            'title' => 'Test Title'
+        ]);
+
+        $this->assertNotNull($response);
+    }
+
+    public function testCanDeleteAResource()
+    {
+        $posts = [
+            'url' => 'posts'
+        ];
+
+        $this->sdk->add([
+            'posts' => $posts
+        ]);
+
+        $response = $this->sdk->posts->delete(1);
+
+        $this->assertNotNull($response);
     }
 }

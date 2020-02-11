@@ -6,6 +6,7 @@ namespace JustSteveKing\Suitcase;
 
 use Exception;
 use GuzzleHttp\Client as HttpClient;
+use GuzzleHttp\Exception\ClientException;
 
 class Client
 {
@@ -44,33 +45,59 @@ class Client
         }
     }
 
-    public function get(string $url = null)
+    public function list(string $url = null)
     {
         return $this->call('GET', [], $url);
     }
 
+    public function get($identifier)
+    {
+        return $this->call('GET', [], "/{$identifier}");
+    }
+
+    public function create(array $data)
+    {
+        return $this->call('POST', $data);
+    }
+
+    public function update($identifier, array $data)
+    {
+        return $this->call('PUT', $data, "/{$identifier}");
+    }
+
+    public function delete($identifier)
+    {
+        return $this->call('DELETE', [], "/{$identifier}");
+    }
+
     protected function call(string $method, array $data = [], string $append = null, array $headers = [])
     {
-        $http = $this->getHttpClient()->addHeaders(array_merge(
-            $this->options['headers'] ?? [],
-            $headers
-        ));
-
         if (! is_null($append)) {
             $this->url = $this->getUrl() . $append;
         }
 
-        dump($this->getUrl());
-        die();
+        $client = $this->getHttpClient();
+        try {
+            $response = $client->request(
+                $method,
+                $this->getUrl(),
+                $data
+            );
+        } catch(ClientException $e) {
+            throw new Exception($e->getMessage());
+        }
 
-        $response = $http->setMethod($method)
-            ->setURL($this->getUrl())
-            ->setBody($data);
+        return json_decode($response->getBody()->getContents());
     }
 
     public function getResources(): array
     {
         return $this->resources;
+    }
+
+    public function getOptions(): array
+    {
+        return $this->options;
     }
 
     public function getHttpClient(): HttpClient
