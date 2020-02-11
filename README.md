@@ -1,4 +1,4 @@
-# Skeleton SDK
+# JustSteveKing Suitcase
 
 The aim of this library is to enable you to connect your APIs more fluently, by providing a base level SDK for you to work with.
 
