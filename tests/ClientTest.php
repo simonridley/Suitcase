@@ -14,11 +14,16 @@ class ClientTest extends TestCase
 {
     protected Client $sdk;
 
-    protected function setUp(): void
+    protected function buildClient()
     {
         $this->sdk = new Client([
             'base_uri' => 'https://jsonplaceholder.typicode.com/'
         ]);
+    }
+
+    protected function setUp(): void
+    {
+        $this->buildClient();
     }
 
     public function testClientCanBeCreated()
@@ -85,6 +90,8 @@ class ClientTest extends TestCase
 
     public function testCanRunAGetRequestForAllResources()
     {
+        $this->buildClient();
+
         $posts = [
             'url' => 'posts'
         ];
@@ -100,6 +107,8 @@ class ClientTest extends TestCase
 
     public function testCanRunAGetRequestForASingleResource()
     {
+        $this->buildClient();
+
         $posts = [
             'url' => 'posts'
         ];
@@ -123,6 +132,8 @@ class ClientTest extends TestCase
 
     public function testCanCreateAResource()
     {
+        $this->buildClient();
+
         $posts = [
             'url' => 'posts'
         ];
@@ -142,6 +153,8 @@ class ClientTest extends TestCase
 
     public function testCanUpdateAResource()
     {
+        $this->buildClient();
+
         $posts = [
             'url' => 'posts'
         ];
@@ -159,6 +172,8 @@ class ClientTest extends TestCase
 
     public function testCanDeleteAResource()
     {
+        $this->buildClient();
+
         $posts = [
             'url' => 'posts'
         ];
@@ -170,5 +185,51 @@ class ClientTest extends TestCase
         $response = $this->sdk->posts->delete(1);
 
         $this->assertNotNull($response);
+    }
+
+    public function testFiltersCanBeBuilt()
+    {
+        $this->buildClient();
+
+        $this->sdk->addFilters([
+            'userId' => 1
+        ]);
+
+        $this->assertArrayHasKey('userId', $this->sdk->getFilters());
+    }
+
+    public function testFiliterStringCanBeCreated()
+    {
+        $this->buildClient();
+
+        $this->sdk->addFilters([
+            'userId' => 1
+        ]);
+
+        $this->assertEquals(
+            "userId=1",
+            $this->sdk->buildFilters()
+        );
+    }
+
+    public function testCanRunAGetRequestForResourcesWiithFilters()
+    {
+        $this->buildClient();
+        
+        $posts = [
+            'url' => 'posts'
+        ];
+
+        $this->sdk->add([
+            'posts' => $posts
+        ]);
+
+        $this->sdk->addFilters([
+            'userId' => 1
+        ]);
+
+        $response = $this->sdk->posts->list();
+
+        $this->assertTrue(is_array($response));
     }
 }

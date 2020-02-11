@@ -12,6 +12,8 @@ class Client
 {
     protected string $url;
 
+    protected array $filters = [];
+
     protected array $options = [];
 
     protected array $resources = [];
@@ -60,9 +62,9 @@ class Client
         return $this->call('POST', $data);
     }
 
-    public function update($identifier, array $data)
+    public function update($identifier, array $data, string $method = "PUT")
     {
-        return $this->call('PUT', $data, "/{$identifier}");
+        return $this->call($method, $data, "/{$identifier}");
     }
 
     public function delete($identifier)
@@ -74,6 +76,10 @@ class Client
     {
         if (! is_null($append)) {
             $this->url = $this->getUrl() . $append;
+        }
+
+        if (! is_null($this->buildFilters())) {
+            $this->url = $this->getUrl() . '?' . $this->buildFilters();
         }
 
         $client = $this->getHttpClient();
@@ -88,6 +94,27 @@ class Client
         }
 
         return json_decode($response->getBody()->getContents());
+    }
+
+    public function addFilters(array $filters): void
+    {
+        foreach($filters as $key => $filter) {
+            $this->filters[$key] = $filter;
+        }
+    }
+
+    public function buildFilters():? string
+    {
+        if (empty($this->getFilters())) {
+            return null;
+        }
+
+        return http_build_query($this->getFilters());
+    }
+
+    public function getFilters(): array
+    {
+        return $this->filters;
     }
 
     public function getResources(): array

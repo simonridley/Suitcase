@@ -21,7 +21,16 @@ $sdk->add([
     ]
 ]);
 
-$sdk->resource->get('/'); // Fetch all Resources
-$sdk->resource->find(1); // Fetch a single Resource
+$sdk->resource->list(); // List Resources
+$sdk->resource->get(1); // Get a Resource
+$sdk->resource->create([
+    // data
+]); // Create a new Resource
+$sdk->resource->update(
+    1, //identifier
+    [], // data to update
+    'PUT', // Optional method to override as PATCH Request
+); // Update a Resource
+$sdk->resource->delete(1); // Delete a Resource
 
 ```
