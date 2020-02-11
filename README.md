@@ -7,7 +7,9 @@ The aim of this library is to enable you to connect your APIs more fluently, by 
 ```php
 <?php
 
-$sdk = new Client();
+require __DIR__ . '/vendor/autoload.php';
+
+$sdk = new JustSteveKing\Suitcase\Client();
 
 $sdk->build([
     // an array of class based resources
