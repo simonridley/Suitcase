@@ -93,7 +93,7 @@ class Client
             throw new Exception($e->getMessage());
         }
 
-        return json_decode($response->getBody()->getContents());
+        return $response;
     }
 
     public function addFilters(array $filters): void

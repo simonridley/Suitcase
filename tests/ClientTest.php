@@ -102,7 +102,10 @@ class ClientTest extends TestCase
 
         $response = $this->sdk->posts->list();
 
-        $this->assertTrue(is_array($response));
+        $this->assertEquals(
+            200,
+            $response->getStatusCode()
+        );
     }
 
     public function testCanRunAGetRequestForASingleResource()
@@ -118,6 +121,13 @@ class ClientTest extends TestCase
         ]);
 
         $response = $this->sdk->posts->get(1);
+
+        $this->assertEquals(
+            200,
+            $response->getStatusCode()
+        );
+
+        $response = json_decode($response->getBody()->getContents());
 
         $this->assertEquals(
             $response->title,
@@ -148,6 +158,13 @@ class ClientTest extends TestCase
             'userId' => 1
         ]);
 
+        $this->assertEquals(
+            201,
+            $response->getStatusCode()
+        );
+
+        $response = json_decode($response->getBody()->getContents());
+
         $this->assertNotNull($response);
     }
 
@@ -167,6 +184,13 @@ class ClientTest extends TestCase
             'title' => 'Test Title'
         ]);
 
+        $this->assertEquals(
+            200,
+            $response->getStatusCode()
+        );
+
+        $response = json_decode($response->getBody()->getContents());
+
         $this->assertNotNull($response);
     }
 
@@ -183,6 +207,13 @@ class ClientTest extends TestCase
         ]);
 
         $response = $this->sdk->posts->delete(1);
+
+        $this->assertEquals(
+            200,
+            $response->getStatusCode()
+        );
+
+        $response = json_decode($response->getBody()->getContents());
 
         $this->assertNotNull($response);
     }
@@ -215,7 +246,7 @@ class ClientTest extends TestCase
     public function testCanRunAGetRequestForResourcesWiithFilters()
     {
         $this->buildClient();
-        
+
         $posts = [
             'url' => 'posts'
         ];
@@ -229,6 +260,13 @@ class ClientTest extends TestCase
         ]);
 
         $response = $this->sdk->posts->list();
+
+        $this->assertEquals(
+            200,
+            $response->getStatusCode()
+        );
+
+        $response = json_decode($response->getBody()->getContents());
 
         $this->assertTrue(is_array($response));
     }
