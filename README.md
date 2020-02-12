@@ -91,7 +91,7 @@ $sdk->posts->list();
 [ico-downloads]: https://img.shields.io/packagist/dt/juststeveking/suitcase.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/juststeveking/suitcase
-[link-scrutinizer]: https://scrutinizer-ci.com/g/JustSteveKing/Suitcase//code-structure
+[link-scrutinizer]: https://scrutinizer-ci.com/g/JustSteveKing/Suitcase/code-structure
 [link-code-quality]: https://scrutinizer-ci.com/g/JustSteveKing/Suitcase/
 [link-downloads]: https://packagist.org/packages/juststeveking/suitcase
 [link-author]: https://github.com/JustSteveKing
