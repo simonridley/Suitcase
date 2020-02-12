@@ -4,40 +4,76 @@
 
 The aim of this library is to enable you to connect your APIs more fluently, by providing a base level SDK for you to work with.
 
-## Usage
+## Install
+
+Via Composer
+
+```bash
+$ composer require juststeveking/suitcase
+```
+
+### Setting up your SDK
 
 ```php
-<?php
-
-require __DIR__ . '/vendor/autoload.php';
-
 $sdk = new JustSteveKing\Suitcase\Client([
-    'base_uri' => 'https://your.api.com'
-]);
+    'base_uri' => 'https://jsonplaceholder.typicode.com'
+```
 
+### Adding Resources to your SDK
+
+```php
 $sdk->add([
-    'resource' => [
-        'url' => 'resource'
+    'posts' => [
+        'url' => 'posts'
     ]
+])
+```
+
+### Get a Resource
+
+```php
+$sdk->posts->get(1);
+```
+
+### Listing all Resources
+
+```php
+$sdk->posts->list();
+```
+
+### Create a Resource
+
+```php
+$sdk->posts->create([
+    'title' => 'Test Title',
+    'description' => 'Test description',
+    'userId' => 1
 ]);
+```
 
-$sdk->resource->list(); // List Resources
-$sdk->resource->get(1); // Get a Resource
-$sdk->resource->create([
-    // data
-]); // Create a new Resource
-$sdk->resource->update(
-    1, //identifier
-    [], // data to update
-    'PUT', // Optional method to override as PATCH Request
-); // Update a Resource
-$sdk->resource->delete(1); // Delete a Resource
+### Update a Resource
 
-/**
- *  Adding filters to your query
- */
+```php
+$sdk->posts->update(
+    1,
+    [
+        'title' => 'Updated Tittle'
+    ],
+    'PATCH' // An optional parameter to override the default PUT request
+);
+```
+
+### Delete a Resource
+
+```php
+$sdk->posts->delete(1);
+```
+
+### There are methods available to programatically add filters to your query
+
+```php
 $sdk->addFilters([
-    'user_id' => 1
+    'userId' => 1
 ]);
-
+$sdk->posts->list();
 ```
