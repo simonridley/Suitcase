@@ -108,6 +108,15 @@ $sdk->addFilters([
 $sdk->posts->list();
 ```
 
+## Still to do
+
+- Sub Resources and inlcudes
+- Sorting
+- Cleaner and nicer filtering
+- Access control on resources
+
+
+
 
 [ico-version]: https://img.shields.io/packagist/v/juststeveking/suitcase.svg?style=flat-square
 [ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/JustSteveKing/Suitcase.svg?style=flat-square
