@@ -110,11 +110,10 @@ $sdk->posts->list();
 
 ## Still to do
 
-- Sub Resources and inlcudes
+- Sub Resources and includes
 - Sorting
 - Cleaner and nicer filtering
 - Access control on resources
-
 
 
 
