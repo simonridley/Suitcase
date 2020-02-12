@@ -5,7 +5,7 @@
 [![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
 
-*Work In Progress*
+**Work In Progress**
 
 The aim of this library is to enable you to connect your APIs more fluently, by providing a base level SDK for you to work with.
 

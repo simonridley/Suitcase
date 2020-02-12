@@ -94,7 +94,7 @@ class Client
                 ]
             );
         } catch(ClientException $e) {
-            throw new ClientException;
+            throw new ClientException($e->getMessage());
         }
 
         return $response;
