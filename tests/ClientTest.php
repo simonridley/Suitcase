@@ -14,10 +14,11 @@ class ClientTest extends TestCase
 {
     protected Client $sdk;
 
-    protected function buildClient()
+    protected function buildClient(array $headers = [])
     {
         $this->sdk = new Client([
-            'base_uri' => 'https://jsonplaceholder.typicode.com/'
+            'base_uri' => 'https://jsonplaceholder.typicode.com/',
+            'headers' => $headers
         ]);
     }
 
@@ -34,6 +35,32 @@ class ClientTest extends TestCase
     public function testHttpClientCanBeAccessed()
     {
         $this->assertInstanceOf(HttpClient::class, $this->sdk->getHttpClient());
+    }
+
+    public function testHeadersCanBeFetched()
+    {
+        $this->assertTrue(is_array($this->sdk->getHeaders()));
+
+        $headers = [
+            'foo' => 'bar'
+        ];
+
+        $this->buildClient($headers);
+
+        $this->assertEquals($headers, $this->sdk->getHeaders());
+    }
+
+    public function testHeadersCanBeSet()
+    {
+        $this->buildClient();
+
+        $this->assertEquals([], $this->sdk->getHeaders());
+
+        $this->sdk->setHeaders($headers = [
+            'foo' => 'bar'
+        ]);
+
+        $this->assertEquals($headers, $this->sdk->getHeaders());
     }
 
     public function testCanAddASingleResource()
@@ -229,7 +256,7 @@ class ClientTest extends TestCase
         $this->assertArrayHasKey('userId', $this->sdk->getFilters());
     }
 
-    public function testFiliterStringCanBeCreated()
+    public function testFilterStringCanBeCreated()
     {
         $this->buildClient();
 
@@ -243,7 +270,7 @@ class ClientTest extends TestCase
         );
     }
 
-    public function testCanRunAGetRequestForResourcesWiithFilters()
+    public function testCanRunAGetRequestForResourcesWithFilters()
     {
         $this->buildClient();
 

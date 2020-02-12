@@ -140,4 +140,14 @@ class Client
     {
         return $this->url;
     }
+
+    public function getHeaders(): array
+    {
+        return $this->getOptions()['headers'] ?? [];
+    }
+
+    public function setHeaders(array $headers): void
+    {
+        $this->options['headers'] = array_merge($this->getOptions()['headers'], $headers);
+    }
 }
