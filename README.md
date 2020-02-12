@@ -1,5 +1,10 @@
 # JustSteveKing Suitcase
 
+[![Latest Version on Packagist][ico-version]][link-packagist]
+[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
+[![Quality Score][ico-code-quality]][link-code-quality]
+[![Total Downloads][ico-downloads]][link-downloads]
+
 *Work In Progress*
 
 The aim of this library is to enable you to connect your APIs more fluently, by providing a base level SDK for you to work with.
@@ -78,3 +83,15 @@ $sdk->addFilters([
 ]);
 $sdk->posts->list();
 ```
+
+
+[ico-version]: https://img.shields.io/packagist/v/juststeveking/suitcase.svg?style=flat-square
+[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/JustSteveKing/Suitcase.svg?style=flat-square
+[ico-code-quality]: https://img.shields.io/scrutinizer/g/JustSteveKing/Suitcase.svg?style=flat-square
+[ico-downloads]: https://img.shields.io/packagist/dt/juststeveking/suitcase.svg?style=flat-square
+
+[link-packagist]: https://packagist.org/packages/juststeveking/suitcase
+[link-scrutinizer]: https://scrutinizer-ci.com/g/JustSteveKing/Suitcase//code-structure
+[link-code-quality]: https://scrutinizer-ci.com/g/JustSteveKing/Suitcase/
+[link-downloads]: https://packagist.org/packages/juststeveking/suitcase
+[link-author]: https://github.com/JustSteveKing
