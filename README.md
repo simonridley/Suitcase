@@ -1,9 +1,11 @@
 # JustSteveKing Suitcase
 
 [![Latest Version on Packagist][ico-version]][link-packagist]
-[![Coverage Status][ico-scrutinizer]][link-scrutinizer]
-[![Quality Score][ico-code-quality]][link-code-quality]
 [![Total Downloads][ico-downloads]][link-downloads]
+[![Code Coverage](https://scrutinizer-ci.com/g/JustSteveKing/Suitcase/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/JustSteveKing/Suitcase/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/JustSteveKing/Suitcase/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/JustSteveKing/Suitcase/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/JustSteveKing/Suitcase/badges/build.png?b=master)](https://scrutinizer-ci.com/g/JustSteveKing/Suitcase/build-status/master)
+[![Code Intelligence Status](https://scrutinizer-ci.com/g/JustSteveKing/Suitcase/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
 
 **Work In Progress**
 
@@ -118,12 +120,8 @@ $sdk->posts->list();
 
 
 [ico-version]: https://img.shields.io/packagist/v/juststeveking/suitcase.svg?style=flat-square
-[ico-scrutinizer]: https://img.shields.io/scrutinizer/coverage/g/JustSteveKing/Suitcase.svg?style=flat-square
-[ico-code-quality]: https://img.shields.io/scrutinizer/g/JustSteveKing/Suitcase.svg?style=flat-square
 [ico-downloads]: https://img.shields.io/packagist/dt/juststeveking/suitcase.svg?style=flat-square
 
 [link-packagist]: https://packagist.org/packages/juststeveking/suitcase
-[link-scrutinizer]: https://scrutinizer-ci.com/g/JustSteveKing/Suitcase/code-structure
-[link-code-quality]: https://scrutinizer-ci.com/g/JustSteveKing/Suitcase/
 [link-downloads]: https://packagist.org/packages/juststeveking/suitcase
 [link-author]: https://github.com/JustSteveKing
