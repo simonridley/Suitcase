@@ -113,7 +113,15 @@ class Client
             return null;
         }
 
-        return http_build_query($this->getFilters());
+        $filters = [];
+
+        foreach ($this->getFilters() as $key => $value) {
+            array_push($filters, [
+                "{$key}={$value}"
+            ]);
+        }
+
+        return implode('&', $filters[0]);
     }
 
     public function getFilters(): array
