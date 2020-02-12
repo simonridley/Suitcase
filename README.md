@@ -17,6 +17,7 @@ $ composer require juststeveking/suitcase
 ```php
 $sdk = new JustSteveKing\Suitcase\Client([
     'base_uri' => 'https://jsonplaceholder.typicode.com'
+]);
 ```
 
 ### Adding Resources to your SDK
