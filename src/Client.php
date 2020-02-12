@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace JustSteveKing\Suitcase;
 
 use Exception;
-use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
+use Psr\Http\Message\ResponseInterface;
 
 class Client
 {
@@ -73,7 +73,7 @@ class Client
         return $this->call('DELETE', [], "/{$identifier}");
     }
 
-    protected function call(string $method, array $data = [], string $append = null, array $headers = []): Response
+    protected function call(string $method, array $data = [], string $append = null, array $headers = []): ResponseInterface
     {
         if (! is_null($append)) {
             $this->url = $this->getUrl() . $append;
@@ -88,10 +88,13 @@ class Client
             $response = $client->request(
                 $method,
                 $this->getUrl(),
-                $data
+                [
+                    'data' => $data,
+                    'headers' => array_merge($this->getOptions()['headers'] ?? [], $headers)
+                ]
             );
         } catch(ClientException $e) {
-            throw new Exception($e->getMessage());
+            throw new ClientException;
         }
 
         return $response;
