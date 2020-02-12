@@ -35,6 +35,30 @@ $sdk->add([
 ])
 ```
 
+### Managing Headers
+
+You can set default headers in the initial construction of the `Client` class:
+
+```php
+$sdk = new JustSteveKing\Suitcase\Client([
+    'base_uri' => 'https://jsonplaceholder.typicode.com',
+    'headers' => [
+        'foo' => 'bar'
+    ]
+]);
+```
+
+Or add then programatically:
+
+```php
+$sdk->setHeaders([
+    'foo' => 'bar'
+]);
+```
+
+When you use the `setHeaders` method, this performs an `array_merge` on the default headers passed through in construction, allowing the most flexibility
+
+
 ### Get a Resource
 
 ```php
