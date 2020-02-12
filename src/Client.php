@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace JustSteveKing\Suitcase;
 
 use Exception;
+use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Client as HttpClient;
 use GuzzleHttp\Exception\ClientException;
 
@@ -72,7 +73,7 @@ class Client
         return $this->call('DELETE', [], "/{$identifier}");
     }
 
-    protected function call(string $method, array $data = [], string $append = null, array $headers = [])
+    protected function call(string $method, array $data = [], string $append = null, array $headers = []): Response
     {
         if (! is_null($append)) {
             $this->url = $this->getUrl() . $append;
