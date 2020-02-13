@@ -9,6 +9,8 @@
 
 **Work In Progress**
 
+This is a BETA release, the API and functionality is likely to change. Any requests should be opened as issues.
+
 The aim of this library is to enable you to connect your APIs more fluently, by providing a base level SDK for you to work with.
 
 ## Install
